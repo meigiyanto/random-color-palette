@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Random Color Palette</title>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.box {
+		height: 60px;
+		width: 20.5%;
+		padding: 6px 8px;
+		display: inline-block;
+	}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script>
+	const hex1 = [ 0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f' ];
+	
+	function randomColor() {
+		return hex1[Math.floor(Math.random() * hex1.length)];
+	}
+	
+	hex1.map((value, key) => {
+		const hexValue  = '#'+randomColor()+randomColor()+randomColor()+randomColor()+randomColor()+randomColor();
+		const pElem     = document.createElement('p');
+		const textpElem = document.createTextNode(hexValue);
+		const box       = document.createElement('div');
+		const container = document.getElementById('container')	
+		
+		box.appendChild(pElem.appendChild(textpElem));
+		box.setAttribute('class', 'box-'+key);
+		box.classList.add('box');
+		box.style.backgroundColor = hexValue;
+		
+		if(container.children.length % 2 === 0) {
+			box.style.color = 'white';
+		} else {
+			box.style.color = 'black';
+		}
+		
+		container.appendChild(box);
+	});
+	</script>
+</body>
+</html>
